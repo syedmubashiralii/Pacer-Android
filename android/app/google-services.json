@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "256887707426",
+    "project_id": "pacer-step-calories-counter",
+    "storage_bucket": "pacer-step-calories-counter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256887707426:android:a8a7e9bf8642b5d31cb77b",
+        "android_client_info": {
+          "package_name": "charisma.motiondetectorpedometer.steptrackercounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256887707426-t0j86u2d7virm3ugp8tooq9p9mac0p56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "charisma.motiondetectorpedometer.steptrackercounter",
+            "certificate_hash": "cd5ff459a659e520133239963d32ce4ce060a8ec"
+          }
+        },
+        {
+          "client_id": "256887707426-en36bqm57khmenhoqloijtl05qor15lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8P_jxrYf442q2wWsnX7aahnLhCXFl77I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256887707426-bd0vj8f34j5l1hp8b933qcp6d98g5eo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5238824914705486~7105277286"
+    }
+  ],
+  "configuration_version": "1"
+}
