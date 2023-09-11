@@ -175,12 +175,13 @@ class _TrackpageState extends State<Trackpage> {
               ),
               FadeInLeft(
                 child: Container(
-                    height: height * .07,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.colorPrimaryDark.withOpacity(0.5),
-                    ),
-                    child: Row(
+                  height: height * .07,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppColors.colorPrimaryDark.withOpacity(0.5),
+                  ),
+                  child: Obx(() {
+                    return Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -191,7 +192,7 @@ class _TrackpageState extends State<Trackpage> {
                               Text(
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
-                                  "210 ${'steps'.tr}",
+                                  "${homecontroller.tracksteps.value.toString()} ${'steps'.tr}",
                                   style:
                                       AppTextStyles.performancepagetextstyle1),
                               Text(
@@ -210,7 +211,7 @@ class _TrackpageState extends State<Trackpage> {
                               Text(
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
-                                  "0.15 km",
+                                  "${homecontroller.trackdistance.value.toString()} km",
                                   style:
                                       AppTextStyles.performancepagetextstyle1),
                               Text(
@@ -229,7 +230,7 @@ class _TrackpageState extends State<Trackpage> {
                               Text(
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
-                                  "8.4 kcal",
+                                  "${homecontroller.trackcalories.value.toString()} kcal",
                                   style:
                                       AppTextStyles.performancepagetextstyle1),
                               Text(
@@ -248,7 +249,7 @@ class _TrackpageState extends State<Trackpage> {
                               Text(
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
-                                  "00:10 hrs",
+                                  "${formatDuration(homecontroller.trackstoredDuration.value)} hrs",
                                   style:
                                       AppTextStyles.performancepagetextstyle1),
                               Text(
@@ -261,7 +262,9 @@ class _TrackpageState extends State<Trackpage> {
                           ),
                         ),
                       ],
-                    )),
+                    );
+                  }),
+                ),
               ),
             ],
           ),
@@ -269,7 +272,7 @@ class _TrackpageState extends State<Trackpage> {
       ),
     );
   }
-//djed
+
   Future<bool> _onWillPop() async {
     return true;
   }

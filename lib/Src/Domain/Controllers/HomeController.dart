@@ -46,12 +46,16 @@ class HomeController extends GetxController {
 
     if (i == 0 || i == 1 || i == 3 || i == 4) {
       if (evenclick % 2 == 0) {
-        adsController.showperformanceintad();
+        if (adsController.consentstatus == true) {
+          adsController.showperformanceintad();
+        }
       }
       evenclick += 1;
     } else if (i == 2) {
       if (oddclick % 2 != 0) {
-        adsController.showperformanceintad();
+        if (adsController.consentstatus == true) {
+          adsController.showperformanceintad();
+        }
       }
       oddclick += 1;
     }
@@ -173,7 +177,7 @@ class HomeController extends GetxController {
     dlog("timeStamp", timeStamp);
   }
 
-  getpercantage() { 
+  getpercantage() {
     double stepsTaken = double.parse(steps.value.toString());
     double stepGoal = double.parse(todaystepgoal.value.toString());
 

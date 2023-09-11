@@ -108,7 +108,9 @@ class CustomDrawer extends StatelessWidget {
                 if (user != null) {
                   loadingDialog(text: "");
                   await backupController.getDatafromFirebase(user);
-                  adsController.islandingpagebannerloaded.value = false;
+                  if (adsController.consentstatus == true) {
+                    adsController.islandingpagebannerloaded.value = false;
+                  }
 
                   Future.delayed(const Duration(seconds: 2), () {
                     Get.back();

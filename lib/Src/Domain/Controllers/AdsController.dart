@@ -10,6 +10,7 @@ import '../../Data/AppIds.dart';
 enum AdLoadState { notLoaded, loading, loaded }
 
 class AdsController extends GetxController {
+  bool consentstatus = false;
   // banner at landing page
   late BannerAd landingpagebanner;
   RxBool islandingpagebannerloaded = false.obs;

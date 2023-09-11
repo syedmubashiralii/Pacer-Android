@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gdpr_dialog/gdpr_dialog.dart' as gdp;
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pacer/Src/Domain/Controllers/AdsController.dart';
@@ -35,18 +36,13 @@ class _LandingPageState extends State<LandingPage> with WidgetsBindingObserver {
 
   final TrackController trackController = Get.put(TrackController());
   NotificationServices notificationServices = NotificationServices();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    appOpenAdManager.loadAd();
-    adscontroller.createbannersize();
-    adscontroller.createstartint();
-    adscontroller.createperformanceint();
-    Future.delayed(const Duration(milliseconds: 1200), () {
-      adscontroller.createlandingpagebanner();
-      adscontroller.createhomepagebanner();
-    });
+    getstatus();
+
     homecontroller.isloading = true.obs;
     AppSharedPreferences.initializepref();
     StepDataManager.createFile();
@@ -65,6 +61,51 @@ class _LandingPageState extends State<LandingPage> with WidgetsBindingObserver {
     homecontroller.loadAndDisplayData();
     Future.delayed(const Duration(seconds: 6), () {
       homecontroller.isloading.value = false;
+    });
+  }
+
+  getstatus() async {
+    gdp.ConsentStatus cstatus =
+        await gdp.GdprDialog.instance.getConsentStatus();
+
+    dlog("cstatus", cstatus);
+    // if (cstatus == gdp.ConsentStatus.obtained) {
+    //   dlog("cstatus", "cstatus");
+    // }
+    if (cstatus == gdp.ConsentStatus.notRequired ||
+        cstatus == gdp.ConsentStatus.obtained) {
+      adscontroller.consentstatus = true;
+      getads();
+    } else {
+      // gdpr
+      if (kDebugMode) {
+        gdp.GdprDialog.instance.resetDecision();
+      }
+
+      gdp.GdprDialog.instance
+          .showDialog(
+              isForTest: kDebugMode ? true : false,
+              testDeviceId: '207F634965BDB8A1770F48FCBDCC687E'
+              )
+          .then((onValue) {
+        if (onValue == true) {
+          getads();
+        }
+        adscontroller.consentstatus = onValue;
+      });
+
+      //gdpr
+    }
+  }
+
+  getads() {
+    appOpenAdManager.loadAd();
+    adscontroller.createbannersize();
+    adscontroller.createstartint();
+    adscontroller.createperformanceint();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      adscontroller.createlandingpagebanner();
+      adscontroller.createhomepagebanner();
     });
     if (Platform.isAndroid) {
       adscontroller.initialize_applovin();

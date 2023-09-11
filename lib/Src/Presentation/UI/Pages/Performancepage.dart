@@ -108,7 +108,7 @@ class _PerformancepageState extends State<Performancepage> {
                             circularStrokeCap: CircularStrokeCap.round,
                           ),
                           Text(
-                            "2110\n${'steps'.tr}",
+                            "${homecontroller.steps.value}\n${'steps'.tr}",
                             textAlign: TextAlign.center,
                             style: AppTextStyles.appslogantextstyle,
                             textScaleFactor: ScaleSize.textScaleFactor(context),
@@ -292,7 +292,8 @@ class _PerformancepageState extends State<Performancepage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("1.50 km",
+                              Text(
+                                  "${homecontroller.distance.value.toString()} km",
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
                                   style:
@@ -310,7 +311,8 @@ class _PerformancepageState extends State<Performancepage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("84.4 kcal",
+                              Text(
+                                  "${homecontroller.calories.value.toString()} kcal",
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
                                   style:
@@ -328,7 +330,8 @@ class _PerformancepageState extends State<Performancepage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("08:23 hrs",
+                              Text(
+                                  "${formatDuration(homecontroller.storedDuration.value)} hrs",
                                   textScaleFactor:
                                       ScaleSize.textScaleFactor(context),
                                   style:

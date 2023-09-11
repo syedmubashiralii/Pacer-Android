@@ -98,4 +98,5 @@ dependencies {
     implementation 'com.google.ads.mediation:facebook:6.11.0.1'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
 }
